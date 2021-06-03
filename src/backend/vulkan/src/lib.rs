@@ -722,7 +722,8 @@ impl hal::Instance<Backend> for Instance {
             }
         };
         let surface_transform_flags = hal::display::SurfaceTransformFlags::from(transformation);
-        let vk_surface_transform_flags = vk::SurfaceTransformFlagsKHR::from_raw(surface_transform_flags.bits());
+        let vk_surface_transform_flags =
+            vk::SurfaceTransformFlagsKHR::from_raw(surface_transform_flags.bits());
 
         let display_surface_ci = {
             let builder = vk::DisplaySurfaceCreateInfoKHR::builder()

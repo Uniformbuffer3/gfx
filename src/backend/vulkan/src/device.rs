@@ -1872,9 +1872,7 @@ impl d::Device<B> for super::Device {
         power_state: &hal::display::control::PowerState,
     ) -> Result<(), hal::display::control::DisplayControlError> {
         let display_control_extension = match self.shared.extension_fns.display_control {
-            Some(ref display_control_extension) => {
-                display_control_extension
-            }
+            Some(ref display_control_extension) => display_control_extension,
             _ => return Err(hal::display::control::DisplayControlError::UnsupportedFeature),
         };
 
@@ -1907,14 +1905,14 @@ impl d::Device<B> for super::Device {
         fence: &mut <B as hal::Backend>::Fence,
     ) -> Result<(), hal::display::control::DisplayControlError> {
         let display_control_extension = match self.shared.extension_fns.display_control {
-            Some(ref display_control_extension) => {
-                display_control_extension
-            }
+            Some(ref display_control_extension) => display_control_extension,
             _ => return Err(hal::display::control::DisplayControlError::UnsupportedFeature),
         };
 
         let vk_device_event = match device_event {
-            hal::display::control::DeviceEvent::DisplayHotplug => vk::DeviceEventTypeEXT::DISPLAY_HOTPLUG,
+            hal::display::control::DeviceEvent::DisplayHotplug => {
+                vk::DeviceEventTypeEXT::DISPLAY_HOTPLUG
+            }
         };
 
         let vk_device_event_info = vk::DeviceEventInfoEXT::builder()
@@ -1948,14 +1946,14 @@ impl d::Device<B> for super::Device {
         fence: &mut <B as hal::Backend>::Fence,
     ) -> Result<(), hal::display::control::DisplayControlError> {
         let display_control_extension = match self.shared.extension_fns.display_control {
-            Some(ref display_control_extension) => {
-                display_control_extension
-            }
+            Some(ref display_control_extension) => display_control_extension,
             _ => return Err(hal::display::control::DisplayControlError::UnsupportedFeature),
         };
 
         let vk_display_event = match display_event {
-            hal::display::control::DisplayEvent::FirstPixelOut => vk::DisplayEventTypeEXT::FIRST_PIXEL_OUT,
+            hal::display::control::DisplayEvent::FirstPixelOut => {
+                vk::DisplayEventTypeEXT::FIRST_PIXEL_OUT
+            }
         };
 
         let vk_display_event_info = vk::DisplayEventInfoEXT::builder()

@@ -677,9 +677,7 @@ impl adapter::PhysicalDevice<Backend> for PhysicalDevice {
         self.0.public_caps
     }
 
-    unsafe fn enumerate_displays(
-        &self,
-    ) -> Vec<display::Display<crate::Backend>> {
+    unsafe fn enumerate_displays(&self) -> Vec<display::Display<crate::Backend>> {
         unimplemented!();
     }
 
