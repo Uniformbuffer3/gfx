@@ -566,6 +566,7 @@ impl hal::device::Device<Backend> for Device {
         _sparse: hal::memory::SparseFlags,
         _type_mask: u32,
         _size: u64,
+        _offset: u64
     ) -> Result<
         (
             <Backend as hal::Backend>::Buffer,

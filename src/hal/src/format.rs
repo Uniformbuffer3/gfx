@@ -129,7 +129,7 @@ impl Default for Swizzle {
 }
 
 /// Drm format properties
-#[derive(Debug, Clone, PartialEq, Eq, Hash)]
+#[derive(Copy, Debug, Clone, PartialEq, Eq, Hash)]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 pub struct DrmFormatProperties {
     /// Drm format modifier.

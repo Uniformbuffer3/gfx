@@ -2095,6 +2095,7 @@ impl d::Device<B> for super::Device {
         sparse: hal::memory::SparseFlags,
         type_mask: u32,
         size: u64,
+        offset: u64
     ) -> Result<(n::Buffer, n::Memory), hal::external_memory::ExternalResourceError> {
         if self.shared.extension_fns.external_memory.is_none() {
             panic!(
@@ -2340,7 +2341,7 @@ impl d::Device<B> for super::Device {
             }
         };
 
-        if let Err(err) = self.bind_buffer_memory(&memory, 0, &mut buffer) {
+        if let Err(err) = self.bind_buffer_memory(&memory, offset, &mut buffer) {
             error!("Failed to `bind_buffer_memory`: {:#?}", err);
             return Err(match err {
                 d::BindError::OutOfMemory(out_of_memory) => out_of_memory.into(),
@@ -2552,6 +2553,7 @@ impl d::Device<B> for super::Device {
         sparse: memory::SparseFlags,
         view_caps: image::ViewCapabilities,
         type_mask: u32,
+        offset: u64
     ) -> Result<(n::Image, n::Memory), hal::external_memory::ExternalResourceError> {
         if self.shared.extension_fns.external_memory.is_none() {
             panic!(
@@ -2887,7 +2889,7 @@ impl d::Device<B> for super::Device {
             }
         };
 
-        if let Err(err) = self.bind_image_memory(&memory, 0, &mut image) {
+        if let Err(err) = self.bind_image_memory(&memory, offset, &mut image) {
             self.destroy_image(image);
             self.free_memory(memory);
             error!("Failed to `bind_image_memory`: {:#?}", err);

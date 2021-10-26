@@ -782,6 +782,7 @@ pub trait Device<B: Backend>: fmt::Debug + Any + Send + Sync {
         sparse: memory::SparseFlags,
         type_mask: u32,
         size: u64,
+        offset: u64
     ) -> Result<(B::Buffer, B::Memory), external_memory::ExternalResourceError>;
 
     /// Create, allocate and bind an image that can be exported.
@@ -848,6 +849,7 @@ pub trait Device<B: Backend>: fmt::Debug + Any + Send + Sync {
         sparse: memory::SparseFlags,
         view_caps: image::ViewCapabilities,
         type_mask: u32,
+        offset: u64
     ) -> Result<(B::Image, B::Memory), external_memory::ExternalResourceError>;
 
     /// Export memory as os type (Fd, Handle or Ptr) based on the requested external memory type.

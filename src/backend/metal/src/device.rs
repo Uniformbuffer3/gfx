@@ -3598,6 +3598,7 @@ impl hal::device::Device<Backend> for Device {
         _sparse: hal::memory::SparseFlags,
         _mem_types: u32,
         _size: u64,
+        _offset: u64
     ) -> Result<(n::Buffer, n::Memory), hal::external_memory::ExternalResourceError> {
         unimplemented!()
     }
@@ -3628,6 +3629,7 @@ impl hal::device::Device<Backend> for Device {
         _sparse: memory::SparseFlags,
         _view_caps: image::ViewCapabilities,
         _type_mask: u32,
+        _offset: u64
     ) -> Result<(n::Image, n::Memory), hal::external_memory::ExternalResourceError> {
         unimplemented!()
     }
